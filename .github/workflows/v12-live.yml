@@ -1,0 +1,36 @@
+name: V12 Live Data Pipeline
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pandas
+
+      - name: Run live data engine
+        run: |
+          python run.py
+
+      - name: Commit updated dashboard data
+        run: |
+          git config user.name "bond-ai-bot"
+          git config user.email "bond-ai@bot.com"
+          git add system_report.json || true
+          git add report.md || true
+          git commit -m "V12 live update" || true
+          git push || true
