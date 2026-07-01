@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bond AI OS Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0b1220;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: #121a2a;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+    }
+    h1 { color: #4da3ff; }
+  </style>
+</head>
+<body>
+
+<h1>📊 Bond AI OS Live Dashboard</h1>
+
+<div class="card">
+  <h2>ETF Risk Overview</h2>
+  <canvas id="chart"></canvas>
+</div>
+
+<div class="card">
+  <h2>Today Signal</h2>
+  <p>00679B → HOLD</p>
+  <p>00740B → HOLD</p>
+  <p>00945B → WATCH</p>
+</div>
+
+<script>
+const ctx = document.getElementById('chart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['00679B','00740B','00945B'],
+    datasets: [{
+      label: 'Risk Score',
+      data: [92,88,81],
+      backgroundColor: ['#4da3ff','#4da3ff','#ffb84d']
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+</script>
+
+</body>
+</html>
