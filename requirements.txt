@@ -1,5 +1,6 @@
-# Bond AI OS V3 Auto requirements
+# Bond AI OS V4 Auto requirements
 
 pandas
 numpy
 requests
+streamlit
